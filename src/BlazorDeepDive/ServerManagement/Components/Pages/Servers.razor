@@ -1,0 +1,45 @@
+﻿@page "/servers"
+
+
+<h3>Servers</h3>
+
+<br />
+<br />
+
+<div class="container-fluid text-center">
+    <div class="row w-50">
+        @foreach (var city in cities)
+        {
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="@($"/images/{city}.png")" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <button type="button" class="btn btn-primary">@city</button>
+                    </div>
+                </div>
+                
+            </div>
+        }
+    </div>
+</div>
+<br />
+
+<ul>
+    @foreach (var server in servers)
+    {
+        <li>
+            @server.Name in @server.City is
+            <span style="color: @((server.IsOnline ? "green" : "red"))">
+                @(server.IsOnline ? "online" : "offline")
+            </span>
+        </li>
+
+    }
+</ul>
+
+
+@code {
+
+    private List<Server> servers = ServersRepository.GetServersByCity("Toronto");
+    private List<String> cities = CitiesRepositories.GetCities();
+}
