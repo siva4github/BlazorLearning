@@ -6,7 +6,10 @@
 <br />
 @if (server != null)
 {
-    <EditForm Model="server" FormName="formServer" OnSubmit="Submit">
+    <EditForm Model="server" FormName="formServer" OnValidSubmit="Submit">
+
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+        <ValidationSummary></ValidationSummary>
 
         <InputNumber @bind-Value="server.ServerId" hidden></InputNumber>
 
